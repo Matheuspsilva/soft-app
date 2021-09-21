@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LivroController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('livros', LivroController::class);
+Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('livros', LivroController::class);
+});
+
+Route::get('/clima', [App\Http\Controllers\ClimaController::class, 'index'])->name('clima.index');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

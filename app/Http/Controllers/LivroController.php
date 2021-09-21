@@ -16,11 +16,8 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::paginate(1);
+        $livros = Livro::paginate(15);
         return view('livro.index')->with('livros', $livros);
-        // return view('livro.index', [
-        //     'livros' => DB::table('livros')->paginate(15)
-        // ]);
     }
 
     /**
