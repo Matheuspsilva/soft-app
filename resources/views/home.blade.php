@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }}
+                        <div class="d-flex justify-content-center">
+                            <a href="{{route('livros.index')}}" class="btn btn-lg btn-primary ml-3">Livros</a>
+                            <a href="{{route('clima.index')}}" class="btn btn-lg btn-warning ml-3">Clima</a>
+                        </div>
+
                 </div>
             </div>
         </div>

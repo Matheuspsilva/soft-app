@@ -1,24 +1,19 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
+@extends('layouts.app')
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </head>
+@section('content')
     <body class="bg-light">
 
-        <div class="container">
+        <div class="container ">
 
             <div class="pt-5 text-center">
                 <h1>Listagem de Livros</h1>
             </div>
-
+            <div class="d-flex float-left">
+                <a href="{{route('clima.index')}}" class="btn btn-secondary m-2">Verificar clima</a>
+            </div>
+            <div class="d-flex float-right">
+                <a href="{{route('livros.create')}}" class="btn btn-primary m-2">Cadastrar Livro</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     @if(Session::has('success'))
@@ -94,4 +89,4 @@
         </div>
 
     </body>
-</html>
+@endsection

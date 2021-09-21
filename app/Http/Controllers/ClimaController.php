@@ -9,7 +9,7 @@ class ClimaController extends Controller
 {
     public function index()
     {
-        $response = Http::get('https://api.hgbrasil.com/weather?city_name=Campinas,SP');
+        $response = Http::get('https://api.hgbrasil.com/weather?woeid=455834');
         $response = json_decode($response);
         return view('clima.index')->with('response', $response);
     }
