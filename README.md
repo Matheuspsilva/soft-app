@@ -65,3 +65,7 @@ php artisan migrate
 ```bash
 php artisan db:seed
 ```
+
+### Usuário para testes
+usuário => teste@gmail.com
+senha => password
