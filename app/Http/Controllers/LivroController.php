@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class LivroController extends Controller
 {
@@ -14,7 +16,11 @@ class LivroController extends Controller
      */
     public function index()
     {
-        //
+        $livros = Livro::paginate(1);
+        return view('livro.index')->with('livros', $livros);
+        // return view('livro.index', [
+        //     'livros' => DB::table('livros')->paginate(15)
+        // ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class LivroController extends Controller
      */
     public function create()
     {
-        //
+        return view('livro.create');
     }
 
     /**
@@ -35,7 +41,9 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Livro::create($request->all());
+        return redirect()->route('livros.index')
+        ->with('success', 'Livro cadastrado com sucesso');
     }
 
     /**
@@ -46,7 +54,7 @@ class LivroController extends Controller
      */
     public function show(Livro $livro)
     {
-        //
+        return view('livro.show')->with('livro', $livro);
     }
 
     /**
@@ -57,7 +65,7 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        //
+        return view('livro.edit')->with('livro', $livro);
     }
 
     /**
@@ -69,7 +77,9 @@ class LivroController extends Controller
      */
     public function update(Request $request, Livro $livro)
     {
-        //
+        $livro->update($request->all());
+        return redirect()->route('livros.show', $livro)
+                    ->with('success', __('Livro editado com sucesso'));
     }
 
     /**
@@ -80,6 +90,9 @@ class LivroController extends Controller
      */
     public function destroy(Livro $livro)
     {
-        //
+        $livro->delete();
+
+        return redirect()->route('livros.index')
+            ->with('success', 'Livro deletado com sucesso');
     }
 }
